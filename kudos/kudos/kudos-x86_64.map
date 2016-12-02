@@ -124,7 +124,7 @@ Discarded input sections
  .comment       0x0000000000000000       0x1b proc/syscall.x86_64.o
  .eh_frame      0x0000000000000000       0x38 proc/syscall.x86_64.o
  .comment       0x0000000000000000       0x1b proc/process.x86_64.o
- .eh_frame      0x0000000000000000      0x200 proc/process.x86_64.o
+ .eh_frame      0x0000000000000000      0x1e0 proc/process.x86_64.o
  .comment       0x0000000000000000       0x1b proc/fdt.x86_64.o
  .eh_frame      0x0000000000000000       0xb8 proc/fdt.x86_64.o
  .comment       0x0000000000000000       0x1b fs/vfs.x86_64.o
@@ -434,7 +434,7 @@ Linker script and memory map
                 0x000000000010dd7f                elf_parse_header
  .text          0x000000000010e1fd      0x18c proc/syscall.x86_64.o
                 0x000000000010e1fd                syscall_entry
- .text          0x000000000010e389      0xbc1 proc/process.x86_64.o
+ .text          0x000000000010e389      0xc1c proc/process.x86_64.o
                 0x000000000010e389                process_reset
                 0x000000000010e3cc                process_init
                 0x000000000010e411                alloc_process_id
@@ -446,97 +446,96 @@ Linker script and memory map
                 0x000000000010ecc5                process_read
                 0x000000000010ed31                process_write
                 0x000000000010ed9d                process_exit
-                0x000000000010ee15                get_process_from_pid
-                0x000000000010ee70                process_join
- .text          0x000000000010ef4a      0x36c proc/fdt.x86_64.o
-                0x000000000010ef4a                fdt_init
-                0x000000000010f04f                fdt_alloc
-                0x000000000010f0f3                fdt_open
-                0x000000000010f20c                fdt_read
-                0x000000000010f261                fdt_write
- .text          0x000000000010f2b6     0x1c58 fs/vfs.x86_64.o
-                0x000000000010f2b6                vfs_init
-                0x000000000010f449                vfs_deinit
-                0x000000000010f6d2                vfs_mount_fs
-                0x000000000010f801                vfs_mount_all
-                0x000000000010fb84                vfs_mount
-                0x000000000010fdee                vfs_unmount
-                0x0000000000110032                vfs_open
-                0x000000000011039b                vfs_close
-                0x0000000000110485                vfs_seek
-                0x000000000011055b                vfs_read
-                0x000000000011067d                vfs_write
-                0x000000000011079f                vfs_create
-                0x00000000001108dd                vfs_remove
-                0x0000000000110a08                vfs_getfree
-                0x0000000000110aef                vfs_filecount
-                0x0000000000110cb8                vfs_file
- .text          0x0000000000110f0e     0x1c02 fs/tfs.x86_64.o
-                0x0000000000110f0e                tfs_init
-                0x0000000000111241                tfs_unmount
-                0x000000000011128d                tfs_open
-                0x000000000011141a                tfs_close
-                0x0000000000111430                tfs_create
-                0x0000000000111a51                tfs_remove
-                0x0000000000111e6a                tfs_read
-                0x000000000011224a                tfs_write
-                0x0000000000112759                tfs_getfree
-                0x0000000000112856                tfs_filecount
-                0x0000000000112975                tfs_file
- .text          0x0000000000112b10      0x4cb fs/filesystems.x86_64.o
-                0x0000000000112b10                get_partition
-                0x0000000000112c2f                read_extended_partition_table
-                0x0000000000112db8                filesystems_try_all
- .text          0x0000000000112fdb       0x78 lib/gcc/divdi3.x86_64.o
-                0x0000000000112fdb                __divdi3
- .text          0x0000000000113053      0x7e1 lib/gcc/qdivrem.x86_64.o
-                0x0000000000113053                __qdivrem
- .text          0x0000000000113834       0x31 lib/gcc/udivdi3.x86_64.o
-                0x0000000000113834                __udivdi3
- .text          0x0000000000113865       0x34 lib/gcc/umoddi3.x86_64.o
-                0x0000000000113865                __umoddi3
+                0x000000000010ee74                process_join
+ .text          0x000000000010efa5      0x36c proc/fdt.x86_64.o
+                0x000000000010efa5                fdt_init
+                0x000000000010f0aa                fdt_alloc
+                0x000000000010f14e                fdt_open
+                0x000000000010f267                fdt_read
+                0x000000000010f2bc                fdt_write
+ .text          0x000000000010f311     0x1c58 fs/vfs.x86_64.o
+                0x000000000010f311                vfs_init
+                0x000000000010f4a4                vfs_deinit
+                0x000000000010f72d                vfs_mount_fs
+                0x000000000010f85c                vfs_mount_all
+                0x000000000010fbdf                vfs_mount
+                0x000000000010fe49                vfs_unmount
+                0x000000000011008d                vfs_open
+                0x00000000001103f6                vfs_close
+                0x00000000001104e0                vfs_seek
+                0x00000000001105b6                vfs_read
+                0x00000000001106d8                vfs_write
+                0x00000000001107fa                vfs_create
+                0x0000000000110938                vfs_remove
+                0x0000000000110a63                vfs_getfree
+                0x0000000000110b4a                vfs_filecount
+                0x0000000000110d13                vfs_file
+ .text          0x0000000000110f69     0x1c02 fs/tfs.x86_64.o
+                0x0000000000110f69                tfs_init
+                0x000000000011129c                tfs_unmount
+                0x00000000001112e8                tfs_open
+                0x0000000000111475                tfs_close
+                0x000000000011148b                tfs_create
+                0x0000000000111aac                tfs_remove
+                0x0000000000111ec5                tfs_read
+                0x00000000001122a5                tfs_write
+                0x00000000001127b4                tfs_getfree
+                0x00000000001128b1                tfs_filecount
+                0x00000000001129d0                tfs_file
+ .text          0x0000000000112b6b      0x4cb fs/filesystems.x86_64.o
+                0x0000000000112b6b                get_partition
+                0x0000000000112c8a                read_extended_partition_table
+                0x0000000000112e13                filesystems_try_all
+ .text          0x0000000000113036       0x78 lib/gcc/divdi3.x86_64.o
+                0x0000000000113036                __divdi3
+ .text          0x00000000001130ae      0x7e1 lib/gcc/qdivrem.x86_64.o
+                0x00000000001130ae                __qdivrem
+ .text          0x000000000011388f       0x31 lib/gcc/udivdi3.x86_64.o
+                0x000000000011388f                __udivdi3
+ .text          0x00000000001138c0       0x34 lib/gcc/umoddi3.x86_64.o
+                0x00000000001138c0                __umoddi3
  *(.rodata*)
- *fill*         0x0000000000113899        0x7 
- .rodata        0x00000000001138a0      0x3ab init/x86_64/main.x86_64.o
- *fill*         0x0000000000113c4b        0x5 
- .rodata        0x0000000000113c50      0x2b0 kernel/x86_64/interrupt.x86_64.o
- .rodata        0x0000000000113f00       0x61 kernel/x86_64/stubs.x86_64.o
- *fill*         0x0000000000113f61        0x7 
- .rodata        0x0000000000113f68       0x76 vm/x86_64/mm_phys.x86_64.o
- *fill*         0x0000000000113fde        0x2 
- .rodata        0x0000000000113fe0       0xa1 vm/x86_64/mm_virt.x86_64.o
- *fill*         0x0000000000114081        0x7 
- .rodata        0x0000000000114088       0x3e drivers/x86_64/tty.x86_64.o
- *fill*         0x00000000001140c6       0x1a 
- .rodata        0x00000000001140e0      0x208 drivers/x86_64/keyboard.x86_64.o
- .rodata        0x00000000001142e8       0x17 drivers/x86_64/disk.x86_64.o
- *fill*         0x00000000001142ff        0x1 
- .rodata        0x0000000000114300      0x34b drivers/x86_64/pci.x86_64.o
- *fill*         0x000000000011464b        0x5 
- .rodata        0x0000000000114650      0x1ba init/common.x86_64.o
- *fill*         0x000000000011480a        0x6 
- .rodata        0x0000000000114810       0x26 kernel/panic.x86_64.o
- *fill*         0x0000000000114836        0x2 
- .rodata        0x0000000000114838       0x7a kernel/thread.x86_64.o
- .rodata        0x00000000001148b2       0x24 kernel/scheduler.x86_64.o
- .rodata        0x00000000001148d6       0x21 kernel/sleepq.x86_64.o
- .rodata        0x00000000001148f7       0x24 kernel/semaphore.x86_64.o
- *fill*         0x000000000011491b        0x5 
- .rodata        0x0000000000114920       0x58 kernel/halt.x86_64.o
- .rodata        0x0000000000114978       0xa8 kernel/stalloc.x86_64.o
- .rodata        0x0000000000114a20      0x200 lib/xprintf.x86_64.o
- .rodata        0x0000000000114c20       0x3a lib/bitmap.x86_64.o
- .rodata        0x0000000000114c5a        0x1 drivers/bootargs.x86_64.o
- *fill*         0x0000000000114c5b        0x5 
- .rodata        0x0000000000114c60       0x59 drivers/modules.x86_64.o
- .rodata        0x0000000000114cb9       0x4e proc/syscall.x86_64.o
- .rodata        0x0000000000114d07       0x39 proc/process.x86_64.o
- .rodata        0x0000000000114d40      0x2f5 fs/vfs.x86_64.o
- *fill*         0x0000000000115035        0x3 
- .rodata        0x0000000000115038       0xd8 fs/tfs.x86_64.o
- .rodata        0x0000000000115110       0xa8 fs/filesystems.x86_64.o
+ *fill*         0x00000000001138f4        0x4 
+ .rodata        0x00000000001138f8      0x3ab init/x86_64/main.x86_64.o
+ *fill*         0x0000000000113ca3        0x5 
+ .rodata        0x0000000000113ca8      0x2b0 kernel/x86_64/interrupt.x86_64.o
+ .rodata        0x0000000000113f58       0x61 kernel/x86_64/stubs.x86_64.o
+ *fill*         0x0000000000113fb9        0x7 
+ .rodata        0x0000000000113fc0       0x76 vm/x86_64/mm_phys.x86_64.o
+ *fill*         0x0000000000114036        0x2 
+ .rodata        0x0000000000114038       0xa1 vm/x86_64/mm_virt.x86_64.o
+ *fill*         0x00000000001140d9        0x7 
+ .rodata        0x00000000001140e0       0x3e drivers/x86_64/tty.x86_64.o
+ *fill*         0x000000000011411e        0x2 
+ .rodata        0x0000000000114120      0x208 drivers/x86_64/keyboard.x86_64.o
+ .rodata        0x0000000000114328       0x17 drivers/x86_64/disk.x86_64.o
+ *fill*         0x000000000011433f        0x1 
+ .rodata        0x0000000000114340      0x34b drivers/x86_64/pci.x86_64.o
+ *fill*         0x000000000011468b        0x5 
+ .rodata        0x0000000000114690      0x1ba init/common.x86_64.o
+ *fill*         0x000000000011484a        0x6 
+ .rodata        0x0000000000114850       0x26 kernel/panic.x86_64.o
+ *fill*         0x0000000000114876        0x2 
+ .rodata        0x0000000000114878       0x7a kernel/thread.x86_64.o
+ .rodata        0x00000000001148f2       0x24 kernel/scheduler.x86_64.o
+ .rodata        0x0000000000114916       0x21 kernel/sleepq.x86_64.o
+ .rodata        0x0000000000114937       0x24 kernel/semaphore.x86_64.o
+ *fill*         0x000000000011495b        0x5 
+ .rodata        0x0000000000114960       0x58 kernel/halt.x86_64.o
+ .rodata        0x00000000001149b8       0xa8 kernel/stalloc.x86_64.o
+ .rodata        0x0000000000114a60      0x200 lib/xprintf.x86_64.o
+ .rodata        0x0000000000114c60       0x3a lib/bitmap.x86_64.o
+ .rodata        0x0000000000114c9a        0x1 drivers/bootargs.x86_64.o
+ *fill*         0x0000000000114c9b        0x5 
+ .rodata        0x0000000000114ca0       0x59 drivers/modules.x86_64.o
+ .rodata        0x0000000000114cf9       0x4e proc/syscall.x86_64.o
+ .rodata        0x0000000000114d47       0x39 proc/process.x86_64.o
+ .rodata        0x0000000000114d80      0x2f5 fs/vfs.x86_64.o
+ *fill*         0x0000000000115075        0x3 
+ .rodata        0x0000000000115078       0xd8 fs/tfs.x86_64.o
+ .rodata        0x0000000000115150       0xa8 fs/filesystems.x86_64.o
                 0x0000000000116000                . = ALIGN (0x1000)
- *fill*         0x00000000001151b8      0xe48 
+ *fill*         0x00000000001151f8      0xe08 
                 0x0000000000116000                __modules_start = .
 
 .rela.dyn       0x0000000000116000        0x0
@@ -820,7 +819,7 @@ LOAD lib/gcc/udivdi3.x86_64.o
 LOAD lib/gcc/umoddi3.x86_64.o
 OUTPUT(kudos-x86_64 elf64-x86-64)
 
-.debug_info     0x0000000000000000     0xef5f
+.debug_info     0x0000000000000000     0xef6a
  .debug_info    0x0000000000000000      0x6ce init/x86_64/main.x86_64.o
  .debug_info    0x00000000000006ce       0x9a kernel/x86_64/_spinlock.x86_64.o
  .debug_info    0x0000000000000768      0x52b kernel/x86_64/cswitch.x86_64.o
@@ -863,18 +862,18 @@ OUTPUT(kudos-x86_64 elf64-x86-64)
  .debug_info    0x0000000000009dc3      0x105 drivers/timer.x86_64.o
  .debug_info    0x0000000000009ec8      0x1a1 drivers/modules.x86_64.o
  .debug_info    0x000000000000a069      0x528 proc/elf.x86_64.o
- .debug_info    0x000000000000a591      0x1f0 proc/syscall.x86_64.o
- .debug_info    0x000000000000a781      0xef7 proc/process.x86_64.o
- .debug_info    0x000000000000b678      0x408 proc/fdt.x86_64.o
- .debug_info    0x000000000000ba80     0x1516 fs/vfs.x86_64.o
- .debug_info    0x000000000000cf96     0x1176 fs/tfs.x86_64.o
- .debug_info    0x000000000000e10c      0x86c fs/filesystems.x86_64.o
- .debug_info    0x000000000000e978       0xee lib/gcc/divdi3.x86_64.o
- .debug_info    0x000000000000ea66      0x391 lib/gcc/qdivrem.x86_64.o
- .debug_info    0x000000000000edf7       0xae lib/gcc/udivdi3.x86_64.o
- .debug_info    0x000000000000eea5       0xba lib/gcc/umoddi3.x86_64.o
+ .debug_info    0x000000000000a591      0x1d8 proc/syscall.x86_64.o
+ .debug_info    0x000000000000a769      0xf1a proc/process.x86_64.o
+ .debug_info    0x000000000000b683      0x408 proc/fdt.x86_64.o
+ .debug_info    0x000000000000ba8b     0x1516 fs/vfs.x86_64.o
+ .debug_info    0x000000000000cfa1     0x1176 fs/tfs.x86_64.o
+ .debug_info    0x000000000000e117      0x86c fs/filesystems.x86_64.o
+ .debug_info    0x000000000000e983       0xee lib/gcc/divdi3.x86_64.o
+ .debug_info    0x000000000000ea71      0x391 lib/gcc/qdivrem.x86_64.o
+ .debug_info    0x000000000000ee02       0xae lib/gcc/udivdi3.x86_64.o
+ .debug_info    0x000000000000eeb0       0xba lib/gcc/umoddi3.x86_64.o
 
-.debug_abbrev   0x0000000000000000     0x38e4
+.debug_abbrev   0x0000000000000000     0x38ba
  .debug_abbrev  0x0000000000000000      0x137 init/x86_64/main.x86_64.o
  .debug_abbrev  0x0000000000000137       0x76 kernel/x86_64/_spinlock.x86_64.o
  .debug_abbrev  0x00000000000001ad      0x151 kernel/x86_64/cswitch.x86_64.o
@@ -917,16 +916,16 @@ OUTPUT(kudos-x86_64 elf64-x86-64)
  .debug_abbrev  0x00000000000029c4       0x8b drivers/timer.x86_64.o
  .debug_abbrev  0x0000000000002a4f       0xf9 drivers/modules.x86_64.o
  .debug_abbrev  0x0000000000002b48       0xfc proc/elf.x86_64.o
- .debug_abbrev  0x0000000000002c44       0xae proc/syscall.x86_64.o
- .debug_abbrev  0x0000000000002cf2      0x26e proc/process.x86_64.o
- .debug_abbrev  0x0000000000002f60      0x152 proc/fdt.x86_64.o
- .debug_abbrev  0x00000000000030b2      0x24d fs/vfs.x86_64.o
- .debug_abbrev  0x00000000000032ff      0x1b2 fs/tfs.x86_64.o
- .debug_abbrev  0x00000000000034b1      0x16d fs/filesystems.x86_64.o
- .debug_abbrev  0x000000000000361e       0x8d lib/gcc/divdi3.x86_64.o
- .debug_abbrev  0x00000000000036ab      0x12e lib/gcc/qdivrem.x86_64.o
- .debug_abbrev  0x00000000000037d9       0x7e lib/gcc/udivdi3.x86_64.o
- .debug_abbrev  0x0000000000003857       0x8d lib/gcc/umoddi3.x86_64.o
+ .debug_abbrev  0x0000000000002c44       0x8d proc/syscall.x86_64.o
+ .debug_abbrev  0x0000000000002cd1      0x265 proc/process.x86_64.o
+ .debug_abbrev  0x0000000000002f36      0x152 proc/fdt.x86_64.o
+ .debug_abbrev  0x0000000000003088      0x24d fs/vfs.x86_64.o
+ .debug_abbrev  0x00000000000032d5      0x1b2 fs/tfs.x86_64.o
+ .debug_abbrev  0x0000000000003487      0x16d fs/filesystems.x86_64.o
+ .debug_abbrev  0x00000000000035f4       0x8d lib/gcc/divdi3.x86_64.o
+ .debug_abbrev  0x0000000000003681      0x12e lib/gcc/qdivrem.x86_64.o
+ .debug_abbrev  0x00000000000037af       0x7e lib/gcc/udivdi3.x86_64.o
+ .debug_abbrev  0x000000000000382d       0x8d lib/gcc/umoddi3.x86_64.o
 
 .debug_aranges  0x0000000000000000      0x9c0
  .debug_aranges
@@ -1034,7 +1033,7 @@ OUTPUT(kudos-x86_64 elf64-x86-64)
  .debug_aranges
                 0x0000000000000990       0x30 lib/gcc/umoddi3.x86_64.o
 
-.debug_line     0x0000000000000000     0x44e1
+.debug_line     0x0000000000000000     0x44de
  .debug_line    0x0000000000000000      0x19d init/x86_64/main.x86_64.o
  .debug_line    0x000000000000019d       0x67 kernel/x86_64/_spinlock.x86_64.o
  .debug_line    0x0000000000000204      0x19a kernel/x86_64/cswitch.x86_64.o
@@ -1078,17 +1077,17 @@ OUTPUT(kudos-x86_64 elf64-x86-64)
  .debug_line    0x0000000000002f12       0x90 drivers/modules.x86_64.o
  .debug_line    0x0000000000002fa2      0x153 proc/elf.x86_64.o
  .debug_line    0x00000000000030f5       0xbf proc/syscall.x86_64.o
- .debug_line    0x00000000000031b4      0x35f proc/process.x86_64.o
- .debug_line    0x0000000000003513      0x171 proc/fdt.x86_64.o
- .debug_line    0x0000000000003684      0x4d3 fs/vfs.x86_64.o
- .debug_line    0x0000000000003b57      0x4db fs/tfs.x86_64.o
- .debug_line    0x0000000000004032      0x1ef fs/filesystems.x86_64.o
- .debug_line    0x0000000000004221       0x66 lib/gcc/divdi3.x86_64.o
- .debug_line    0x0000000000004287      0x1a1 lib/gcc/qdivrem.x86_64.o
- .debug_line    0x0000000000004428       0x5c lib/gcc/udivdi3.x86_64.o
- .debug_line    0x0000000000004484       0x5d lib/gcc/umoddi3.x86_64.o
+ .debug_line    0x00000000000031b4      0x35c proc/process.x86_64.o
+ .debug_line    0x0000000000003510      0x171 proc/fdt.x86_64.o
+ .debug_line    0x0000000000003681      0x4d3 fs/vfs.x86_64.o
+ .debug_line    0x0000000000003b54      0x4db fs/tfs.x86_64.o
+ .debug_line    0x000000000000402f      0x1ef fs/filesystems.x86_64.o
+ .debug_line    0x000000000000421e       0x66 lib/gcc/divdi3.x86_64.o
+ .debug_line    0x0000000000004284      0x1a1 lib/gcc/qdivrem.x86_64.o
+ .debug_line    0x0000000000004425       0x5c lib/gcc/udivdi3.x86_64.o
+ .debug_line    0x0000000000004481       0x5d lib/gcc/umoddi3.x86_64.o
 
-.debug_str      0x0000000000000000     0x27e6
+.debug_str      0x0000000000000000     0x27d1
  .debug_str     0x0000000000000000      0x424 init/x86_64/main.x86_64.o
                                         0x496 (size before relaxing)
  .debug_str     0x0000000000000424       0x45 kernel/x86_64/_spinlock.x86_64.o
@@ -1173,25 +1172,25 @@ OUTPUT(kudos-x86_64 elf64-x86-64)
                                         0x21d (size before relaxing)
  .debug_str     0x0000000000001f40      0x1c0 proc/elf.x86_64.o
                                         0x373 (size before relaxing)
- .debug_str     0x0000000000002100       0x4e proc/syscall.x86_64.o
-                                        0x212 (size before relaxing)
- .debug_str     0x000000000000214e      0x182 proc/process.x86_64.o
-                                        0x7bf (size before relaxing)
- .debug_str     0x00000000000022d0       0x91 proc/fdt.x86_64.o
+ .debug_str     0x0000000000002100       0x5b proc/syscall.x86_64.o
+                                        0x210 (size before relaxing)
+ .debug_str     0x000000000000215b      0x160 proc/process.x86_64.o
+                                        0x7ba (size before relaxing)
+ .debug_str     0x00000000000022bb       0x91 proc/fdt.x86_64.o
                                         0x283 (size before relaxing)
- .debug_str     0x0000000000002361      0x1b9 fs/vfs.x86_64.o
+ .debug_str     0x000000000000234c      0x1b9 fs/vfs.x86_64.o
                                         0x596 (size before relaxing)
- .debug_str     0x000000000000251a       0xf4 fs/tfs.x86_64.o
+ .debug_str     0x0000000000002505       0xf4 fs/tfs.x86_64.o
                                         0x54d (size before relaxing)
- .debug_str     0x000000000000260e      0x124 fs/filesystems.x86_64.o
+ .debug_str     0x00000000000025f9      0x124 fs/filesystems.x86_64.o
                                         0x4d4 (size before relaxing)
- .debug_str     0x0000000000002732       0x2d lib/gcc/divdi3.x86_64.o
+ .debug_str     0x000000000000271d       0x2d lib/gcc/divdi3.x86_64.o
                                         0x134 (size before relaxing)
- .debug_str     0x000000000000275f       0x4f lib/gcc/qdivrem.x86_64.o
+ .debug_str     0x000000000000274a       0x4f lib/gcc/qdivrem.x86_64.o
                                         0x17c (size before relaxing)
- .debug_str     0x00000000000027ae       0x1c lib/gcc/udivdi3.x86_64.o
+ .debug_str     0x0000000000002799       0x1c lib/gcc/udivdi3.x86_64.o
                                         0x12f (size before relaxing)
- .debug_str     0x00000000000027ca       0x1c lib/gcc/umoddi3.x86_64.o
+ .debug_str     0x00000000000027b5       0x1c lib/gcc/umoddi3.x86_64.o
                                         0x12f (size before relaxing)
 
 .note.GNU-stack

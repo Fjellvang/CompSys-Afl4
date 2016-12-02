@@ -46,10 +46,9 @@ uintptr_t syscall_entry(uintptr_t syscall,
     // TODO: Actually kill off the process instead.
     // Pid for the process.
     process_exit(arg0);
-    thread_sleep_forever();
     break;
   case SYSCALL_JOIN:
-    // Gør noget
+    retval = process_join((pid_t)arg0);
     break;
   default:
     kprintf("SYSCALL %x\n", syscall);

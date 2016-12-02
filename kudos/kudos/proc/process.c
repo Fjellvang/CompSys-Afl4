@@ -294,31 +294,43 @@ void process_is_done(){
 void process_exit(int retval){
  //gem retval i pcb.
   pcb_t *p = process_get_current_process_entry();
+  thread_table_t* thr;
+  interrupt_status_t st;
+  thr = thread_get_current_thread_entry(); 
 
   p->state = PROCESS_DONE;
   p->retval = retval;
-  thread_table_t* thr = thread_get_current_thread_entry(); 
+  
+  // vi venter på alle andre så sleepq!
+  st = _interrupt_disable();
+  spinlock_acquire(&p_slock);
+  
+  sleepq_wake_all((void *)p);
+
+  spinlock_release(&p_slock);
+  _interrupt_set_state(st);
+
   vm_destroy_pagetable(thr->pagetable);
   thr->pagetable = NULL;
   thread_finish();
 }
-pcb_t* get_process_from_pid(int pid){
-
-  for(int i = 0; i < PROCESS_MAX_PROCESSES; i++){
-    if(process_table[i].pid == pid){
-      return &process_table[i];
-    }
-  }
-}
 
 int process_join(pid_t pid){
+
   interrupt_status_t st;
   int retval;
-  pcb_t *p = get_process_from_pid(pid); 
+
+  pcb_t *p = &process_table[pid];
   st = _interrupt_disable();
   spinlock_acquire(&p_slock);
+  // Prøver vi at joine en process der er fri?
+  if(p->state == PROCESS_READY){
+    spinlock_release(&p_slock);
+    _interrupt_set_state(st);
+    return -1;
+  }
 
-  while(p->state == PROCESS_WORKING){
+  while(p->state != PROCESS_DONE){
     //smid hele process i sleepQ
     sleepq_add((void *)p);
     spinlock_release(&p_slock);
@@ -327,7 +339,7 @@ int process_join(pid_t pid){
   }
   
   retval = p->retval;
-
+  process_reset(pid);
   spinlock_release(&p_slock);
   _interrupt_set_state(st);
 
