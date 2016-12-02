@@ -1,0 +1,126 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+heap                0x100             lib.x86_64.o
+free_list           0x8               lib.x86_64.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0xffff800000000000                . = 0xffff800000000000
+
+ro_segment      0xffff800000000000     0x2800
+ *(.text .rodata .rodata.*)
+ .text          0xffff800000000000       0x1a x86_64/crt.x86_64.o
+                0xffff800000000000                _start
+                0xffff800000000018                __main
+                0xffff800000000019                __stack_chk_fail
+ .text          0xffff80000000001a        0x3 x86_64/_syscall.x86_64.o
+                0xffff80000000001a                _syscall
+ *fill*         0xffff80000000001d        0x3 
+ .text          0xffff800000000020     0x2584 lib.x86_64.o
+                0xffff800000000d90                syscall_halt
+                0xffff800000000db0                syscall_getpid
+                0xffff800000000dd0                syscall_spawn
+                0xffff800000000e00                syscall_exit
+                0xffff800000000e20                syscall_join
+                0xffff800000000e50                syscall_fork
+                0xffff800000000e80                syscall_memlimit
+                0xffff800000000ea0                syscall_sem_open
+                0xffff800000000ec0                syscall_sem_close
+                0xffff800000000ef0                syscall_sem_p
+                0xffff800000000f20                syscall_sem_v
+                0xffff800000000f50                syscall_open
+                0xffff800000000f80                syscall_close
+                0xffff800000000fb0                syscall_read
+                0xffff800000000fe0                syscall_write
+                0xffff800000001010                syscall_seek
+                0xffff800000001040                syscall_create
+                0xffff800000001070                syscall_delete
+                0xffff8000000010a0                syscall_filecount
+                0xffff8000000010d0                syscall_file
+                0xffff800000001100                strlen
+                0xffff800000001120                strcpy
+                0xffff800000001150                strncpy
+                0xffff800000001190                strcat
+                0xffff8000000011e0                strncat
+                0xffff800000001250                strcmp
+                0xffff8000000012a0                strncmp
+                0xffff8000000012f0                memcmp
+                0xffff800000001340                strstr
+                0xffff8000000013b0                memset
+                0xffff8000000013d0                memcpy
+                0xffff800000001400                putc
+                0xffff800000001430                puts
+                0xffff800000001470                getc_raw
+                0xffff8000000014a0                getc
+                0xffff8000000014f0                gets
+                0xffff800000001590                readline_static
+                0xffff8000000016a0                readline
+                0xffff800000001eb0                printf
+                0xffff800000001f60                snprintf
+                0xffff800000002000                heap_init
+                0xffff800000002030                malloc
+                0xffff8000000020f0                free
+                0xffff800000002190                calloc
+                0xffff800000002270                realloc
+                0xffff800000002550                atoi
+ *fill*         0xffff8000000025a4       0x1c 
+ .rodata        0xffff8000000025c0      0x200 lib.x86_64.o
+ .text          0xffff8000000027c0        0x0 spawnn.x86_64.o
+ .rodata.str1.1
+                0xffff8000000027c0        0xf spawnn.x86_64.o
+ *fill*         0xffff8000000027cf        0x1 
+ .rodata.str1.8
+                0xffff8000000027d0       0x30 spawnn.x86_64.o
+                                         0x29 (size before relaxing)
+
+.text.startup   0xffff800000002800       0x8c
+ .text.startup  0xffff800000002800       0x8c spawnn.x86_64.o
+                0xffff800000002800                main
+
+.eh_frame       0xffff800000002890      0x608
+ .eh_frame      0xffff800000002890      0x5b8 lib.x86_64.o
+                                        0x558 (size before relaxing)
+ .eh_frame      0xffff800000002e48       0x50 spawnn.x86_64.o
+                                         0x68 (size before relaxing)
+
+.rela.dyn       0xffff800000002e98        0x0
+ .rela.text     0xffff800000002e98        0x0 x86_64/crt.x86_64.o
+
+rw_segment      0xffff800000003000      0x108
+ *(.data .bss COMMON)
+ .data          0xffff800000003000        0x0 x86_64/crt.x86_64.o
+ .bss           0xffff800000003000        0x0 x86_64/crt.x86_64.o
+ .data          0xffff800000003000        0x0 x86_64/_syscall.x86_64.o
+ .bss           0xffff800000003000        0x0 x86_64/_syscall.x86_64.o
+ .data          0xffff800000003000        0x0 lib.x86_64.o
+ .bss           0xffff800000003000        0x0 lib.x86_64.o
+ COMMON         0xffff800000003000      0x108 lib.x86_64.o
+                0xffff800000003000                heap
+                0xffff800000003100                free_list
+ .data          0xffff800000003108        0x0 spawnn.x86_64.o
+ .bss           0xffff800000003108        0x0 spawnn.x86_64.o
+                0xffff800000003108                BINARY_ENDS_HERE = .
+LOAD x86_64/crt.x86_64.o
+LOAD x86_64/_syscall.x86_64.o
+LOAD lib.x86_64.o
+LOAD spawnn.x86_64.o
+OUTPUT(spawnn.x86_64 elf64-x86-64)
+
+.comment        0x0000000000000000       0x1a
+ .comment       0x0000000000000000       0x1a lib.x86_64.o
+                                         0x1b (size before relaxing)
+ .comment       0x000000000000001a       0x1b spawnn.x86_64.o
+
+.note.GNU-stack
+                0x0000000000000000        0x0
+ .note.GNU-stack
+                0x0000000000000000        0x0 lib.x86_64.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 spawnn.x86_64.o
