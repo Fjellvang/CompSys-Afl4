@@ -14,7 +14,7 @@ Linker script and memory map
 
                 0xffff800000000000                . = 0xffff800000000000
 
-ro_segment      0xffff800000000000     0x27d2
+ro_segment      0xffff800000000000     0x27c0
  *(.text .rodata .rodata.*)
  .text          0xffff800000000000       0x1a x86_64/crt.x86_64.o
                 0xffff800000000000                _start
@@ -73,21 +73,19 @@ ro_segment      0xffff800000000000     0x27d2
  *fill*         0xffff8000000025a4       0x1c 
  .rodata        0xffff8000000025c0      0x200 lib.x86_64.o
  .text          0xffff8000000027c0        0x0 tenlines.x86_64.o
- .rodata.str1.1
-                0xffff8000000027c0       0x12 tenlines.x86_64.o
 
-.text.startup   0xffff8000000027e0       0x39
- .text.startup  0xffff8000000027e0       0x39 tenlines.x86_64.o
-                0xffff8000000027e0                main
+.text.startup   0xffff8000000027c0        0x3
+ .text.startup  0xffff8000000027c0        0x3 tenlines.x86_64.o
+                0xffff8000000027c0                main
 
-.eh_frame       0xffff800000002820      0x5e8
- .eh_frame      0xffff800000002820      0x5b8 lib.x86_64.o
+.eh_frame       0xffff8000000027c8      0x5d0
+ .eh_frame      0xffff8000000027c8      0x5b8 lib.x86_64.o
                                         0x558 (size before relaxing)
- .eh_frame      0xffff800000002dd8       0x30 tenlines.x86_64.o
-                                         0x48 (size before relaxing)
+ .eh_frame      0xffff800000002d80       0x18 tenlines.x86_64.o
+                                         0x30 (size before relaxing)
 
-.rela.dyn       0xffff800000002e08        0x0
- .rela.text     0xffff800000002e08        0x0 x86_64/crt.x86_64.o
+.rela.dyn       0xffff800000002d98        0x0
+ .rela.text     0xffff800000002d98        0x0 x86_64/crt.x86_64.o
 
 rw_segment      0xffff800000003000      0x108
  *(.data .bss COMMON)

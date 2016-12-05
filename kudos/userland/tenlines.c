@@ -1,8 +1,9 @@
 #include "lib.h"
+#include "badcnt.h"
 
 int main() {
-  for (int i = 0; i < 10; i++) {
-    printf("Hello number %d!\n", i);
+  for (int i = 0; i < 20000; i++) {
+     //increment();
   }
 
   return 0;

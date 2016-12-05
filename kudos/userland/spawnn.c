@@ -1,18 +1,27 @@
 #include "lib.h"
 
-#define tostart "[disk]tenlines"
+#define tostart "[disk]thread"
 #define HOWMANY 2
 
+volatile int count = 0;
+int niters = 20000;
+
 int main(void) {
-  int pids[HOWMANY];
 
-  for (int i = 0; i < HOWMANY; i++) {
-    if ((pids[i] = syscall_spawn(tostart, 0)) < 0) {
-      printf("spawnn: process_spawn() numer %d failed\n", i);
-      syscall_halt();
-    }
-    syscall_join(pids[i]);
-  }
+  pid_t pid1 = syscall_spawn(tostart, 0);
+  pid_t pid2 = syscall_spawn(tostart, 0);
+  syscall_join(pid1);
+  syscall_join(pid2);
 
+  if(count != 2*niters){
+    printf("BOOM");
+  } else
+    printf("no boom");
   return 0;
 }
+
+
+void increment(){
+    count++;
+}
+
