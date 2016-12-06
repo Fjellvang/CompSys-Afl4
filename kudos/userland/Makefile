@@ -1,6 +1,6 @@
 # Add your _userland_ program sources to the SOURCES variable.
 
-SOURCES :=  halt.c hw.c rw.c spawnn.c tenlines.c badcnt.c threadbad.c
+SOURCES :=  halt.c hw.c rw.c spawnn.c tenlines.c semtest1.c semtest2.c tester.c
 
 X86_64PROGRAMS := $(patsubst %.c, %, $(SOURCES))
 

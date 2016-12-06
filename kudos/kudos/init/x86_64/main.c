@@ -19,6 +19,8 @@
 #include "fs/vfs.h"
 #include <keyboard.h>
 #include "drivers/modules.h"
+// farlig
+#include "proc/usr_sem.h"
 
 /**
  * Initialize the system. This function is called by CPU0 just
@@ -87,7 +89,7 @@ int init(uint64_t magic, uint8_t *multiboot)
 
   kprintf("Initializing semaphores\n");
   semaphore_init();
-
+  usr_sem_init();
   /* Start scheduler */
   kprintf("Initializing scheduler\n");
   scheduler_init();

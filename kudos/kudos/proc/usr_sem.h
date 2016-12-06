@@ -2,6 +2,7 @@
 #define MAX_SEMPAHORES (128)
 
 #include "kernel/spinlock.h"
+#include "kernel/semaphore.h"
 
 typedef struct{
   int value;
@@ -10,6 +11,8 @@ typedef struct{
   int creator;
   //
   const char name[MAX_NAME_LEN]; 
+  semaphore_t* sem;
+
 } usr_sem_t;
 
 //return handle identified by name.

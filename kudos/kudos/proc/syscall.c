@@ -58,6 +58,7 @@ uintptr_t syscall_entry(uintptr_t syscall,
     usr_sem_close((usr_sem_t*)arg0); 
     break;
   case SYSCALL_SEM_P:
+    kprintf("SYSCALL CALL \n");
     usr_sem_p((usr_sem_t*)arg0);
     break;
   case SYSCALL_SEM_V:

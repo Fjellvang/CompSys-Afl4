@@ -1,0 +1,15 @@
+program1:
+sem1 = 0
+sem2 = 0
+spawn(program2)
+printf("hejsa program2")
+V(sem2)
+P(sem1)
+
+
+
+
+
+program2
+p(sem2)
+printf("HEjsa program1")

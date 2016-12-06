@@ -9,6 +9,8 @@ int main(){
   
   pid_t pid1 = syscall_spawn(tostart, 0);
   pid_t pid2 = syscall_spawn(tostart, 0);
+
+
   syscall_join(pid1);
   syscall_join(pid2);
 
@@ -24,3 +26,4 @@ void increment(){
 
 }
 
+void increment();
